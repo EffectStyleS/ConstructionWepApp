@@ -1,0 +1,7 @@
+C:\Users\sereg\source\repos\ASPNetCore\ASPNetCoreWebAPI\obj\Debug\net6.0\ASPNetCoreWebAPI.csproj.AssemblyReference.cache
+C:\Users\sereg\source\repos\ASPNetCore\ASPNetCoreWebAPI\obj\Debug\net6.0\ASPNetCoreWebAPI.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\sereg\source\repos\ASPNetCore\ASPNetCoreWebAPI\obj\Debug\net6.0\ASPNetCoreWebAPI.AssemblyInfoInputs.cache
+C:\Users\sereg\source\repos\ASPNetCore\ASPNetCoreWebAPI\obj\Debug\net6.0\ASPNetCoreWebAPI.AssemblyInfo.cs
+C:\Users\sereg\source\repos\ASPNetCore\ASPNetCoreWebAPI\obj\Debug\net6.0\ASPNetCoreWebAPI.csproj.CoreCompileInputs.cache
+C:\Users\sereg\source\repos\ASPNetCore\ASPNetCoreWebAPI\obj\Debug\net6.0\ASPNetCoreWebAPI.MvcApplicationPartsAssemblyInfo.cs
+C:\Users\sereg\source\repos\ASPNetCore\ASPNetCoreWebAPI\obj\Debug\net6.0\ASPNetCoreWebAPI.MvcApplicationPartsAssemblyInfo.cache
