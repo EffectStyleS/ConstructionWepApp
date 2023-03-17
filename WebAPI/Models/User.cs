@@ -1,4 +1,6 @@
-﻿namespace WebAPI.Models
+﻿using System.ComponentModel.DataAnnotations.Schema;
+
+namespace WebAPI.Models
 {
     public class User
     {

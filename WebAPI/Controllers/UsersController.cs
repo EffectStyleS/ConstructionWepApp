@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using WebAPI.Models;
+using WebAPI.Models1;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -30,7 +31,7 @@ namespace WebAPI.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<User>>> GetUser()
         {
-            return await _context.User.ToListAsync();
+            return await _context.User.Include(u => u.Budget).ToListAsync();
         }
 
         // GET: api/Users/5
@@ -49,7 +50,7 @@ namespace WebAPI.Controllers
 
         // POST: api/Blogs
         [HttpPost]
-        public async Task<ActionResult<User>> PostBlog(User user)
+        public async Task<ActionResult<User>> PostUser(User user)
         {
             if (!ModelState.IsValid)
             {
@@ -63,7 +64,7 @@ namespace WebAPI.Controllers
 
         // PUT: api/Blogs/5
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutBlog(int id, User user)
+        public async Task<IActionResult> PutUser(int id, User user)
         {
             if (id != user.Id)
             {

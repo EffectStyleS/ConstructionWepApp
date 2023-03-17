@@ -5,10 +5,22 @@ namespace WebAPI.Models
     public partial class FFAContext : DbContext
     {
         #region Constructor
-        public FFAContext(DbContextOptions<FFAContext>
-        options)
-        : base(options)
-        { }
+        //public FFAContext(DbContextOptions<FFAContext>
+        //options)
+        //: base(options)
+        //{ }
+
+        protected readonly IConfiguration Configuration;
+
+        public FFAContext(IConfiguration configuration)
+        {
+            Configuration = configuration;
+        }
+
+        protected override void OnConfiguring(DbContextOptionsBuilder options)
+        {
+            options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"));
+        }
         #endregion
 
         public virtual DbSet<Budget> Budget { get; set; }
@@ -27,6 +39,7 @@ namespace WebAPI.Models
             {
                 entity.Property(e => e.Login).IsRequired();
             });
+            modelBuilder.Entity<User>().HasKey(u => u.Id);
 
             modelBuilder.Entity<Budget>(entity =>
             {
@@ -34,6 +47,8 @@ namespace WebAPI.Models
                 .WithMany(p => p.Budget)
                 .HasForeignKey(d => d.UserId);
             });
+
+
         }
 
     }
