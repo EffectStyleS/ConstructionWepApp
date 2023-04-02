@@ -1,12 +1,17 @@
 using Microsoft.EntityFrameworkCore;
 using WebAPI.Data;
 using WebAPI.Models;
+using Microsoft.AspNetCore.Identity;
 using System.Text.Json.Serialization;
 
 var builder = WebApplication.CreateBuilder(args);
 
 //services
+builder.Services.AddIdentity<User, IdentityRole>()
+    .AddEntityFrameworkStores<FFAContext>();
+
 builder.Services.AddDbContext<FFAContext>();
+
 builder.Services.AddControllers().AddJsonOptions(x => x.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles);
 
 builder.Services.AddCors(options =>
@@ -19,7 +24,6 @@ builder.Services.AddCors(options =>
                 .AllowAnyMethod();
         });
 });
-
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
@@ -45,6 +49,7 @@ app.UseHttpsRedirection();
 
 app.UseCors();
 
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();

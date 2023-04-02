@@ -1,24 +1,20 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
+﻿using Microsoft.AspNetCore.Identity;
 
 namespace WebAPI.Models
 {
-    public class User
+    public class User : IdentityUser
     {
         public User()
+            :base()
         {
-            this.Budget = new HashSet<Budget>();
             this.Expense = new HashSet<Expense>();
             this.Income = new HashSet<Income>();
+            this.Budget = new HashSet<Budget>();
         }
 
-        public int Id { get; set; }
-        public string Name { get; set; }
-        public string Login { get; set; }
-        public string Password { get; set; }
-        public int Role { get; set; }
 
-        public virtual ICollection<Budget> Budget { get; set; }
         public virtual ICollection<Expense> Expense { get; set; }
         public virtual ICollection<Income> Income { get; set; }
+        public virtual ICollection<Budget> Budget { get; set; }
     }
 }

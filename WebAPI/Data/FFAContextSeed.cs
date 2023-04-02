@@ -10,7 +10,7 @@ namespace WebAPI.Data
             {
                 context.Database.EnsureCreated();
 
-                if(context.User.Any())
+                if(context.Budget.Any())
                 {
                     return;
                 }
@@ -19,26 +19,7 @@ namespace WebAPI.Data
                 {
                     new User
                     {
-                        Name = "Сергей",
-                        Login = "Сергей",
-                        Password = "kpi1",
-                        Role = 1
-                    },
-
-                    new User
-                    {
-                        Name = "Алексей",
-                        Login = "Алёша",
-                        Password = "kpi2",
-                        Role = 1
-                    },
-
-                    new User
-                    {
-                        Name = "Наталья",
-                        Login = "Le Maman",
-                        Password = "kpi3",
-                        Role = 0
+                        UserName = "Сергей",
                     },
                 };
 
@@ -78,17 +59,17 @@ namespace WebAPI.Data
                 {
                     new Budget
                     {
-                        UserId = 25,
+                        UserId = context.User.Where(x => x.UserName == "Сергей").FirstOrDefault().Id,
                         StartDate = DateTime.Now,
-                        TimePeriodId = 16
+                        TimePeriodId = context.TimePeriod.Where(t => t.Name == "Месяц").FirstOrDefault().Id
                     },
 
                     new Budget
                     {
-                        UserId = 25,
+                        UserId = context.User.Where(x => x.UserName == "Сергей").FirstOrDefault().Id,
                         StartDate = new DateTime(2023, 4, 1),
-                        TimePeriodId = 18
-                    }
+                        TimePeriodId = context.TimePeriod.Where(t => t.Name == "Год").FirstOrDefault().Id
+                    },
                 };
 
                 foreach (var budget in budgets)

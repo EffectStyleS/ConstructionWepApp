@@ -1,8 +1,9 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 
 namespace WebAPI.Models
 {
-    public partial class FFAContext : DbContext
+    public partial class FFAContext : IdentityDbContext<User>
     {
         #region Constructor
         //public FFAContext(DbContextOptions<FFAContext>
@@ -35,11 +36,7 @@ namespace WebAPI.Models
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<User>(entity =>
-            {
-                entity.Property(e => e.Login).IsRequired();
-            });
-            modelBuilder.Entity<User>().HasKey(u => u.Id);
+            base.OnModelCreating(modelBuilder);
 
             modelBuilder.Entity<Budget>(entity =>
             {
