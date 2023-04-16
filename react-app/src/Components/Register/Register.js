@@ -35,9 +35,10 @@ const Register = ({user, setUser}) => {
                     console.log('Data:', data);
                     if (
                         typeof data !== 'undefined' &&
-                        typeof data.userName !== 'undefined'
+                        typeof data.userName !== 'undefined' &&
+                        typeof data.userRole !== 'undefined'
                     ) {
-                        setUser({isAuthenticated: true, userName: data.userName});
+                        setUser({isAuthenticated: true, userName: data.userName, userRole: data.userRole});
                         setRegistrationSuccess(true); // <-- добавьте эту строку
                         navigate('/');
                     }
@@ -55,7 +56,7 @@ const Register = ({user, setUser}) => {
     return (
         <>
         {user.isAuthenticated ? (
-            <h3>Пользователь {user.userName} уже вошел в систему</h3>
+            <h3>Пользователь {user.userName} с ролью {user.userRole} уже вошел в систему</h3>
         ) : (
             <>
                 <h3>Регистрация</h3>
@@ -67,8 +68,7 @@ const Register = ({user, setUser}) => {
                     <input type="text" name="password" placeholder="Пароль" />
                     <br />
                     <label>Повторите Пароль </label>
-                    <input type="text" name="reppassword"
-                    placeholder="Пароль" />
+                    <input type="text" name="reppassword" placeholder="Пароль" />
                     <br />
                     <button type="submit">Зарегистрироваться</button>
                 </form>
@@ -82,4 +82,5 @@ const Register = ({user, setUser}) => {
         </>
     );
 };
+
 export default Register;

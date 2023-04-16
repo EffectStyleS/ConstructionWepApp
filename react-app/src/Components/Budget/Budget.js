@@ -48,7 +48,7 @@ const Budget = ({ user, budgets, setBudgets, removeBudget }) => {
 
                     <strong > {Id}: {startDate} </strong>
 
-                    {user.isAuthenticated ? (
+                    { user.isAuthenticated && user.userRole === "admin" ?  (
                         <button onClick={() => deleteItem({ Id })}>Удалить</button>
                     ) : (
                         ""
@@ -61,9 +61,9 @@ const Budget = ({ user, budgets, setBudgets, removeBudget }) => {
                         </div>
                     ))} */}
 
-                    <strong > {Id}: {timePeriodId} </strong>
+                    <div> {Id} {timePeriodId} </div>
+                    <div> {Id} {userId} </div>
                     <br/>
-                    <strong > {Id}: {userId} </strong>
                     
                     {/* {userOwner.length > 0 && userOwner.map(({ Id, userName }) => (
                         <div className="UserProperties" key={Id} id={Id} >

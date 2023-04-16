@@ -3,7 +3,7 @@ import ReactDOM from "react-dom/client"
 import { BrowserRouter, Route, Routes } from "react-router-dom"
 
 import Budget from './Components/Budget/Budget'
-import BudgetCreate from './Components/BudgetCreate/BudgetCreate'
+import BudgetCreate from './Components/BudgetCreate/budgetCreate'
 import Layout from "./Components/Layout/Layout"
 import LogIn from "./Components/LogIn/LogIn"
 import LogOff from "./Components/LogOff/LogOff"
@@ -14,23 +14,28 @@ const App = () => {
   const [budgets, setBudgets] = useState([])
   const addBudget = (budget) => setBudgets([...budgets, budget])
   const removeBudget = (removeId) => setBudgets(budgets.filter(({ Id }) => Id !== removeId));
-  const [user, setUser] = useState({isAuthenticated: false, userName:""})
+  const [user, setUser] = useState({
+    isAuthenticated: false,
+    userName:"",
+    userRole: ""
+  })
 
   useEffect(() => {
     const getUser = async () => {
       return await fetch("api/account/isauthenticated")
       .then((response) => {
       response.status === 401 &&
-      setUser({ isAuthenticated: false, userName: "" })
+      setUser({ isAuthenticated: false, userName: "", userRole: "" })
       return response.json()
       })
       .then(
         (data) => {
           if (
           typeof data !== "undefined" &&
-          typeof data.userName !== "undefined"
+          typeof data.userName !== "undefined" &&
+          typeof data.userRole !== "undefined"
           ) {
-            setUser({ isAuthenticated: true, userName: data.userName })
+            setUser({ isAuthenticated: true, userName: data.userName, userRole: data.userRole })
           }
         },
         (error) => {
